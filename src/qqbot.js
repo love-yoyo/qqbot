@@ -6,6 +6,8 @@
   var Dispatcher = require('./dispatcher');
   var log = new Log('debug');
 
+  var autoplay = require('./autoplay');
+
   var MsgType = {
     Default: 'message',
     Sess: 'sess_message',
@@ -611,6 +613,7 @@
         }
         try {
           log.debug("[好友消息]", msg.from_user.nick + ":" + msg.content + " " + msg.time);
+          autoplay(msg);
         } catch (undefined) {}
       } else if (msg_type === MsgType.Sess) {
         msg.from_gid = value.id;

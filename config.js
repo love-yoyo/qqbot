@@ -11,6 +11,9 @@
   }
 
   var config = fs.readFileSync(path, 'utf8');
-  module.exports = yaml.load(config);
+  
+  var _configJson = yaml.load(config);
+  console.log(_configJson.account);
+  module.exports = _configJson;
 
 }).call(this);
