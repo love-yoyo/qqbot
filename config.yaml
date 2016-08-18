@@ -1,8 +1,8 @@
 # rename this file to config.yaml before start
 
 # qqbot account, not needed anymore for qrcode authentication
-account:  3274747072
-password: ""
+# account:  123456
+# password: ""
 
 # server to view verification code, not required for mac
 port: 12890
