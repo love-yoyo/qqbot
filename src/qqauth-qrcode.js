@@ -11,11 +11,10 @@ function getUserHome() {
   var querystring = require('querystring');
   var Url = require('url');
   var Path = require('path');
-  var Log = require('log');
   var encryptPass = require('./encrypt');
   var client = require('./httpclient');
 
-  var log = new Log('debug');
+  var log = require('./util/log');
 
   var client_id = 53999199;
 
@@ -233,11 +232,11 @@ function getUserHome() {
       log.info("登录 step0.5 获取二维码");
       return get_qr_code(qq, opt.host, opt.port, function(error) {
           if (process.platform === 'darwin') {
-              log.notice("请用 手机QQ 扫描该二维码");
+              log.info("请用 手机QQ 扫描该二维码");
               var file_path = Path.join(getUserHome(), ".tmp", "qrcode.jpg");
               require('child_process').exec('open ' + file_path);
           } else {
-              log.notice("请用 手机QQ 扫描该地址的二维码图片->", "http://" + opt.host + ":" + opt.port);
+              log.info("请用 手机QQ 扫描该地址的二维码图片->", "http://" + opt.host + ":" + opt.port);
           }
 
           return wait_scan_qrcode(callback);

@@ -2,7 +2,7 @@
 (function() {
   var QQBot, api, auth_info, bot, config, cookies, defaults, group, jsons, log;
 
-  log = new (require('log'))('debug');
+  log = require('../util/log');
 
   jsons = JSON.stringify;
 

@@ -1,5 +1,4 @@
-var Log = require('log');
-var log = new Log('debug');
+var log = require('./util/log');
 
 var path = require('path');
 var fs = require('fs');

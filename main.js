@@ -3,7 +3,7 @@
 'use strict';
 
 (function() {
-  var log = new (require('log'))('debug');
+  var log = require('./src/util/log');
   var auth = require("./src/qqauth-qrcode");
   var api = require("./src/qqapi");
   var QQBot = require("./src/qqbot");

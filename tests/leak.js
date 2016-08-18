@@ -2,7 +2,7 @@
 (function() {
   var Bot, Group, group, log;
 
-  log = new (require('log'))('debug');
+  log = require('../util/log');
 
   Group = (function() {
     function Group() {}

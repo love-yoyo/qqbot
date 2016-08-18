@@ -1,0 +1,19 @@
+{
+    "appenders": [{
+        "type": "file",
+        "filename": "shell.log",
+        "maxLogSize": 20480,
+        "backups": 3,
+        "category": "shell"
+    }, {
+        "type": "file",
+        "filename": "qqbot.log",
+        "maxLogSize": 20480,
+        "backups": 3,
+        "category": "qqbot"
+    }, {
+        "type": "console",
+        "category": "console"
+    }],
+    "replaceConsole": true
+}

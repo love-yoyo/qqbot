@@ -20,11 +20,7 @@
 
   Path = require('path');
 
-  Log = require('log');
-
-  log = new Log('debug');
-
-  encryptPass = require('./encrypt');
+  log = require('./util/log');
 
   md5 = function(str) {
     var md5sum;

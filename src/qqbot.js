@@ -2,9 +2,8 @@
 (function() {
   var auth = require('./qqauth-qrcode');
   var api = require('./qqapi');
-  var Log = require('log');
   var Dispatcher = require('./dispatcher');
-  var log = new Log('debug');
+  var log = require('./util/log');
 
   var autoplay = require('./autoplay');
 

@@ -16,7 +16,7 @@
 
   client = require('./httpclient');
 
-  log = new (require('log'))('debug');
+  log = require('./util/log');
 
   msg_id = 43690001;
 
