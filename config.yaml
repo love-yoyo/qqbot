@@ -20,3 +20,11 @@ plugins:
 # apiserver plugin configration
 api_port:  12990
 api_token: ''
+
+# allow below account auto reply
+allowAccount:
+    - 787207323
+
+# allow below account execute shell
+shellAccount:
+    - 787207323

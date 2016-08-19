@@ -547,6 +547,7 @@
     };
 
     QQBot.prototype._on_message = function(event, msg_type) {
+      var self = this;
       var msg, replied, reply, value;
       value = event.value;
       msg = {
@@ -612,7 +613,7 @@
         }
         try {
           log.debug("[好友消息]", msg.from_user.nick + ":" + msg.content + " " + msg.time);
-          autoplay(msg);
+          autoplay(msg, self);
         } catch (undefined) {}
       } else if (msg_type === MsgType.Sess) {
         msg.from_gid = value.id;

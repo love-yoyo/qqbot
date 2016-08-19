@@ -38,7 +38,7 @@
 
   jsons = JSON.stringify;
 
-  log = new (require('log'))('debug');
+  log = require('../src/util/log');
 
   querystring = require('querystring');
 

@@ -6,5 +6,4 @@ logger.setLevel('TRACE');
 
 module.exports = function(){
     console.log('enter in email');
-    logger.info('enter in email');
 }

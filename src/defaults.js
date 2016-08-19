@@ -33,6 +33,7 @@
 
   exports.save = function() {
     var dir_path = Path.join(getUserHome(), ".tmp");
+    console.log(dir_path);
     if(! fs.existsSync(dir_path)) fs.mkdirSync(dir_path);
 
     return fs.writeFileSync(path, JSON.stringify(defaults));
