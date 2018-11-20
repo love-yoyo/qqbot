@@ -12,6 +12,22 @@
       return all_cookies;
   };
 
+    var get_cookie = function (name) {
+        var _cookiesStr = get_cookies_string();
+        var reg = new RegExp('(?:[\\s\\S]*?)' + name + '=(.*?)(?:;[\\s\\S]*?)');
+        var match = _cookiesStr.match(reg);
+        return match && match[1] ? match[1] : '';
+    };
+
+  var remove_cookie = function (key) {
+      var reg = new RegExp('^'+ key +'=');
+      var rs = _.reject(all_cookies, function (ck) {
+          return reg.test(ck);
+      });
+      all_cookies = rs;
+  }
+
+  // old function , overwrite by King at 2018/11/20
   var get_cookies_string = function() {
       var cookie_map = {};
       all_cookies.forEach(function(ck){
@@ -26,7 +42,24 @@
       return cks.join(' ');
   };
 
+  get_cookies_string = function () {
+      var cookie_map = {};
+      all_cookies.forEach(function (ck) {
+          var v = ck.split(';')[0];
+          var index = v.trim().indexOf('=');
+          var key = v.slice(0, index);
+          var val = v.slice(index + 1) + ';';
+          if (val != ';') cookie_map[key] = val;
+      });
+      var cks = [];
+      for (var k in cookie_map) {
+          cks.push(k + '=' + cookie_map[k]);
+      }
+      return cks.join(' ');
+  };
+
   var update_cookies = function(cks) {
+    //   console.log('update_cookies: ', cks);
       if (cks) {
         all_cookies = _.union(all_cookies, cks);
       }
@@ -52,6 +85,7 @@
       return http_or_https.get(url_or_options, function(resp){
           if(pre_callback !== undefined) pre_callback(resp);
 
+        //   console.log('[ debug ] url_get headers[set-cookie]: ', resp.headers['set-cookie']);
           update_cookies(resp.headers['set-cookie']);
 
           var res = resp;
@@ -199,6 +233,8 @@
     post: http_post,
     url_get: url_get,
     url_post: url_post,
+    remove_cookie: remove_cookie,
+    get_cookie: get_cookie,
   };
 
 }).call(this);

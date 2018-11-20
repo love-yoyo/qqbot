@@ -3,7 +3,11 @@
   "version": "2.1.0",
   "description": "SmartQQ robot powered by node.js",
   "main": "main.js",
-  "scripts": {},
+  "scripts": {
+    "qqbot": "set DEBUG=true && node main.js",
+    "smartqq-bot": "node main.js",
+    "qq": "node qq.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/floatinghotpot/qqbot.git"

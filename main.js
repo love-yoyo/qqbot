@@ -50,6 +50,8 @@
         }
       });
       return bot.update_all_members(function(ret) {
+        return bot.runloop();
+        // 暂时屏蔽下方代码，保证程序运行，King at 2018/11/20
         if(ret) {
           log.info("Entering runloop, Enjoy!");
           return bot.runloop();
