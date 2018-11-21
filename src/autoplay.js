@@ -24,14 +24,14 @@ function getTulingRs(postData, callback) {
     };
 
     // Set up the request
-    var post_req = http.request(post_options, function(res) {
+    var post_req = http.request(post_options, function (res) {
         res.setEncoding('utf8');
         var body = "";
-        res.on('data', function(chunk) {
+        res.on('data', function (chunk) {
             body += chunk;
             console.log('Response: ' + chunk);
         });
-        res.on('end', function() {
+        res.on('end', function () {
             callback(body);
         })
     });
@@ -42,18 +42,18 @@ function getTulingRs(postData, callback) {
 
 }
 
-var handleMsg = function(msg, qqbot) {
+var handleMsg = function (msg, qqbot) {
     console.log('start handle msg');
     var useTuling = false;
 
     var shellConfig = fs.readFileSync(path.join(__dirname, './shell/shell-config.json'), 'utf8')
     shellConfig = JSON.parse(shellConfig);
 
-    var _isFindShell = _.find(config.shellAccount, function(val) {
+    var _isFindShell = _.find(config.shellAccount, function (val) {
         return msg.from_user.account == val
     })
     if (_isFindShell) {
-        _.each(shellConfig, function(val, key) {
+        _.each(shellConfig, function (val, key) {
             if (msg.content && (msg.content == val)) {
                 useTuling = true;
                 var shellPath = path.join(__dirname, './shell/' + key);
@@ -67,21 +67,21 @@ var handleMsg = function(msg, qqbot) {
     }
 
     if (!useTuling) {
-        var _isFind = _.find(config.allowAccount, function(val) {
+        var _isFind = _.find(config.allowAccount, function (val) {
             return msg.from_user.account == val
         })
         if (!_isFind) {
             return
         }
-        qqbot.get_user_uin(msg.from_user.account, function(err, uin) {
+        qqbot.get_user_uin(msg.from_user.account, function (err, uin) {
             getTulingRs({
                 key: "9df55500d66343af9f5868c1300f5bbe",
                 info: msg.content,
                 userid: msg.from_uin
-            }, function(res) {
+            }, function (res) {
                 res = JSON.parse(res);
                 console.log(res.text);
-                qqbot.send_message(uin, res.text, function(ret, e) {
+                qqbot.send_message(uin, res.text, function (ret, e) {
                     log.info(ret)
                     log.info(e)
                 })
@@ -90,7 +90,7 @@ var handleMsg = function(msg, qqbot) {
     }
 }
 
-module.exports = function(msg, qqbot) {
+module.exports = function (msg, qqbot) {
     log.info(JSON.stringify(msg));
     handleMsg(msg, qqbot);
 }
